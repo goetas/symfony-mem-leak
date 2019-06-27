@@ -5,10 +5,6 @@ sudo: false
 git:
   depth: 1
 
-env:
-  global:
-    - TARGET=test
-
 matrix:
   include:
     - php: 7.2
