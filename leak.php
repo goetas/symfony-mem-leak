@@ -8,12 +8,10 @@ error_reporting(22527);
 
 $f = function () {
     $files = new \Symfony\Component\Cache\Adapter\PhpFilesAdapter('C4wL-F1oiZ', 0, '/home/goetas/projects/leak/var/cache/prod/pools', 1);
-    $array = new \Symfony\Component\Cache\Adapter\PhpArrayAdapter('/home/goetas/projects/leak/var/cache/prod/annotations.php', $files);
 
-    $provider = new Symfony\Component\Cache\DoctrineProvider($array);
+    $files->get('%5BApp%5CController%5CDefaultController%23leak%5D%5B1%5D', function (){
 
-    // The callable will only be executed on a cache miss.
-    $provider->fetch( 'App\Controller\DefaultController#leak');
+    });
 };
 
 foreach (range(1, 5000) as $i) {

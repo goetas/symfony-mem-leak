@@ -1,7 +1,6 @@
 {
     "type": "project",
     "require": {
-        "symfony/cache": "4.3.*",
-        "doctrine/cache": "^1.8"
+        "symfony/cache": "4.3.*"
     }
 }
