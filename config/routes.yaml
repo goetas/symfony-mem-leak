@@ -1,3 +1,0 @@
-index:
-    path: /noleak
-    controller: App\Controller\DefaultController::noleak
