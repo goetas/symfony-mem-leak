@@ -14,5 +14,6 @@ install:
   - composer install
 
 script:
+  - bin/warmup
   - bin/runner-no-leak
   - bin/runner-leak
