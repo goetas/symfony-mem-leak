@@ -16,7 +16,6 @@ class DefaultController
         return new Response('hello');
     }
 
-
     public function noleak()
     {
         return new Response('hello');
