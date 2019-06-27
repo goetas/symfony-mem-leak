@@ -16,12 +16,12 @@ $f = function () {
     $preovider->fetch( 'App\Controller\DefaultController#leak');
 };
 
-foreach (range(1, 50000) as $i) {
+foreach (range(1, 5000) as $i) {
 
     $f();
 
     gc_collect_cycles();
-    if (!($i % 1000)) {
+    if (!($i % 100)) {
         echo round(memory_get_usage() / 1024 / 1024, 6) . PHP_EOL;
     }
 }
