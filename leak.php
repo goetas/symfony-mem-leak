@@ -7,27 +7,13 @@ require __DIR__ . '/vendor/autoload.php';
 
 
 $f = function () {
+    $files = new \Symfony\Component\Cache\Adapter\PhpFilesAdapter('C4wL-F1oiZ', 0, '/home/goetas/projects/leak/var/cache/prod/pools', 1);
+    $array = new \Symfony\Component\Cache\Adapter\PhpArrayAdapter('/home/goetas/projects/leak/var/cache/prod/annotations.php', $files);
 
-
-    $cache = new \Symfony\Component\Cache\Adapter\PhpFilesAdapter('C4wL-F1oiZ', 0, '/home/goetas/projects/leak/var/cache/prod/pools', 1);
-    $cache2 = new \Symfony\Component\Cache\Adapter\PhpArrayAdapter('/home/goetas/projects/leak/var/cache/prod/annotations.php', $cache);
-
-    $ad = new Symfony\Component\Cache\DoctrineProvider($cache2);
-//
-//    // The callable will only be executed on a cache miss.
-//    $ad->get('App\Controller\DefaultController#leak"', function ($item) {
-//        $item->expiresAfter(3600);
-//
-//        // ... do some HTTP request or heavy computations
-//        $computedValue = 'foobar';
-//
-//        return $computedValue;
-//    });
+    $preovider = new Symfony\Component\Cache\DoctrineProvider($array);
 
     // The callable will only be executed on a cache miss.
-    $ad->fetch( 'App\Controller\DefaultController#leak');
-
-
+    $preovider->fetch( 'App\Controller\DefaultController#leak');
 };
 
 foreach (range(1, 50000) as $i) {
