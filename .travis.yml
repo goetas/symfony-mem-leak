@@ -1,0 +1,22 @@
+language: php
+
+sudo: false
+
+git:
+  depth: 1
+
+env:
+  global:
+    - TARGET=test
+
+matrix:
+  include:
+    - php: 7.2
+    - php: 7.3
+
+install:
+  - composer install
+
+script:
+  - bin/runner-no-leak
+  - bin/runner-leak
