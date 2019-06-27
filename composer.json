@@ -1,6 +1,6 @@
 {
     "type": "project",
     "require": {
-        "symfony/cache": "4.3.*"
+        "symfony/var-exporter": "4.3.*"
     }
 }
