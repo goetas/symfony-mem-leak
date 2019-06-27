@@ -7,7 +7,7 @@ git:
 
 matrix:
   include:
-    - php: 7.2
+    - php: 7.2.19
 
 install:
   - composer install
