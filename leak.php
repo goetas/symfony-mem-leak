@@ -1,13 +1,10 @@
-#!/usr/bin/env php
 <?php
-
-require __DIR__ . '/vendor/autoload.php';
 
 $f = function () {
     include 'cache.php';
 };
 
-foreach (range(1, 5000) as $i) {
+for ($i = 0; $i<10000; $i++) {
 
     $f();
 

@@ -1,6 +1,0 @@
-{
-    "type": "project",
-    "require": {
-        "symfony/var-exporter": "4.3.*"
-    }
-}

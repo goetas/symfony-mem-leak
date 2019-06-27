@@ -1,24 +1,3 @@
-<?php return [PHP_INT_MAX, static function () {
+<?php return function () {
 
-    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
-        $o = [
-            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
-        ],
-        null,
-        [
-            'Symfony\\Component\\Routing\\Annotation\\Route' => [
-                'path' => [
-                    '/leak',
-                ],
-                'name' => [
-                    'getss',
-                ],
-            ],
-        ],
-        [
-            $o[0],
-        ],
-        []
-    );
-
-}];
+};
