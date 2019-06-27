@@ -4,7 +4,7 @@
 set_time_limit(0);
 
 require __DIR__ . '/vendor/autoload.php';
-
+error_reporting(22527);
 
 $f = function () {
     $files = new \Symfony\Component\Cache\Adapter\PhpFilesAdapter('C4wL-F1oiZ', 0, '/home/goetas/projects/leak/var/cache/prod/pools', 1);
