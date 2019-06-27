@@ -19,14 +19,13 @@ $f = function () {
     $kernel->shutdown();
 };
 
-foreach (range(1, 1000) as $i) {
+foreach (range(1, 5000) as $i) {
 
     $f();
 
     gc_collect_cycles();
-    if (!($i % 10)) {
+    if (!($i % 1000)) {
         echo round(memory_get_usage() / 1024 / 1024, 6) . PHP_EOL;
     }
 }
 unset($f);
-
