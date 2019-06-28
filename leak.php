@@ -1,12 +1,23 @@
 <?php
 
-$f = function () {
-    include 'cache.php';
-};
+class A {
+
+    public function getService()
+    {
+        return include 'serviceDef.php';
+    }
+}
+
+class B {
+
+    public $test;
+}
+
 
 for ($i = 0; $i<10000; $i++) {
 
-    $f();
+    $a = new A();
+    $a->getService();
 
     gc_collect_cycles();
     if (!($i % 100)) {
