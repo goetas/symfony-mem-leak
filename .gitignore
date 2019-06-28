@@ -1,4 +1,5 @@
 .idea
+composer.lock
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -6,3 +7,6 @@
 /public/bundles/
 /vendor/
 ###< symfony/framework-bundle ###
+
+LeakDI.php
+Container*

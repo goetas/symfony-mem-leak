@@ -1,20 +1,44 @@
 #!/usr/bin/env php
 <?php
 
+use Symfony\Component\DependencyInjection\Argument\IteratorArgument;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
+use Symfony\Component\DependencyInjection\Reference;
+
 set_time_limit(0);
 
 require __DIR__ . '/vendor/autoload.php';
 error_reporting(22527);
 
+$di = new ContainerBuilder();
+
+$a = new Definition('stdClass');
+$a->setPublic(true);
+$di->setDefinition('a', $a);
+
+$b = new Definition('stdClass');
+$b->addArgument(new IteratorArgument([new Reference('a')]));
+$b->setPublic(true);
+$di->setDefinition('b', $b);
+
+$di->compile();
+
+$dumper = new PhpDumper($di);
+$files = $dumper->dump(['as_files' => true, 'namespace' => 'TestLeak', 'class' => 'LeakDI']);
+foreach ($files as $file => $content) {
+    @mkdir(dirname($file));
+    file_put_contents($file, $content);
+}
+require __DIR__. '/LeakDI.php';
+
 $f = function () {
-    $files = new \Symfony\Component\Cache\Adapter\PhpFilesAdapter('C4wL-F1oiZ', 0, '/home/goetas/projects/leak/var/cache/prod/pools', 1);
-
-    $files->get('%5BApp%5CController%5CDefaultController%23leak%5D%5B1%5D', function (){
-
-    });
+    $container  = new TestLeak\LeakDI();
+    $container->get('b');
 };
 
-foreach (range(1, 5000) as $i) {
+foreach (range(1, 100000) as $i) {
 
     $f();
 
