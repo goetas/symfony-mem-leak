@@ -8,7 +8,6 @@ git:
 matrix:
   include:
     - php: 7.2
-    - php: 7.3
 
 install:
   - composer install
