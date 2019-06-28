@@ -21,6 +21,7 @@ $di->setDefinition('a', $a);
 $b = new Definition('stdClass');
 $b->addArgument(new IteratorArgument([new Reference('a')]));
 $b->setPublic(true);
+$b->setShared(false);
 $di->setDefinition('b', $b);
 
 $di->compile();
@@ -33,14 +34,10 @@ foreach ($files as $file => $content) {
 }
 require __DIR__. '/LeakDI.php';
 
-$f = function () {
-    $container  = new TestLeak\LeakDI();
-    $container->get('b');
-};
-
+$container  = new TestLeak\LeakDI();
 foreach (range(1, 10000) as $i) {
 
-    $f();
+    $container->get('b');
 
     gc_collect_cycles();
     if (!($i % 100)) {
